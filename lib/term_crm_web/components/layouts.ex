@@ -100,6 +100,7 @@ defmodule TermCrmWeb.Layouts do
     <main>
       {render_slot(@inner_block)}
     </main>
+    <.footer />
 
     <.flash_group flash={@flash} />
     """
@@ -246,10 +247,57 @@ defmodule TermCrmWeb.Layouts do
               <.link href={~p"/users/log-in"} class="btn btn-outline btn-primary">Log in</.link>
             </li>
             <li>
-              <.link href={~p"/users/register"} class="btn btn-primary">Register</.link>
+              <.link href={~p"/users/register"} class="btn btn-primary">&gt;_ Register</.link>
             </li>
           <% end %>
         </ul>
+      </div>
+    </div>
+    """
+  end
+
+  def footer(assigns) do
+    ~H"""
+    <div class="bg-base-300 px-4 sm:px-6 lg:px-8">
+      <footer class="max-w-7xl mx-auto text-base-content py-10 flex flex-col sm:flex-row gap-10">
+        <aside class="flex-1">
+          <p class="font-semibold text-base tracking-[1px] uppercase">
+            $ termcrm<span class="animate-pulse">_</span>
+          </p>
+          <p class="text-muted">For developers who ship.</p>
+        </aside>
+        <div class="flex flex-col sm:flex-row gap-10 lg:gap-24 text-sm text-base-content/70">
+          <nav class="flex flex-col gap-2">
+            <h4 class="mb-2 text-base-content text-xs uppercase tracking-[1px]">Product</h4>
+            <a class="link link-hover">Features</a>
+            <a class="link link-hover">Pricing</a>
+            <a class="link link-hover">Changelog</a>
+            <a class="link link-hover">Roadmap</a>
+          </nav>
+          <nav class="flex flex-col gap-2">
+            <h4 class="mb-2 text-base-content text-xs text-base-content uppercase tracking-[1px]">
+              Resources
+            </h4>
+            <a class="link link-hover">Documentation</a>
+            <a class="link link-hover">API Reference</a>
+            <a class="link link-hover">Github</a>
+            <a class="link link-hover">Status</a>
+          </nav>
+          <nav class="flex flex-col gap-2">
+            <h4 class="mb-2 text-base-content text-xs text-primary uppercase tracking-[1px]">
+              Legal
+            </h4>
+            <a class="link link-hover">Privacy policy</a>
+            <a class="link link-hover">Terms of use</a>
+          </nav>
+        </div>
+      </footer>
+      <div class="w-full h-[1px] bg-muted max-w-7xl mx-auto" />
+      <div class="max-w-7xl mx-auto text-base-content py-10 flex flex-col sm:flex-row sm:justify-between gap-10">
+        <p class="text-xs text-muted">
+          &copy; 2026 TERMCRM. All rights reserved.
+        </p>
+        <p class="text-xs text-muted">BUILD #2026.02.24 // SHA:a3f8c1d</p>
       </div>
     </div>
     """

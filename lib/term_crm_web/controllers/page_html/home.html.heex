@@ -7,7 +7,7 @@
       <div class="mt-20 text-center px-6 space-y-6">
         <%!-- Top badge --%>
         <div class="mt-10 flex justify-center">
-          <div class="flex items-center gap-2 border border-primary/40 px-4 py-1.5 text-xs font-mono text-primary tracking-widest uppercase">
+          <div class="flex items-center gap-2 terminal-outline">
             <span class="inline-block w-2 h-2 bg-primary"></span>
             v0.1.0 — Now Available for Early Access
           </div>
@@ -25,7 +25,7 @@
       </div>
 
       <%!-- Subheadline --%>
-      <p class="mt-10 text-center font-mono text-base-content/70 max-w-4xl px-6 leading-relaxed">
+      <p class="mt-10 text-center text-base-content/70 max-w-5xl px-6 leading-relaxed">
         A CRM built for developers who live in the terminal. No bloat. No click-ops. Just raw, efficient client management — the way it should be.
       </p>
 
@@ -93,10 +93,10 @@
     </div>
 
     <%!-- Developer features --%>
-    <section class="w-full bg-base-100 py-24 px-6">
+    <section class="w-full bg-base-100 py-24 md:py-32 px-6">
       <%!-- Section label --%>
-      <div class="flex flex-col gap-3 items-center justify-center mb-6">
-        <p class="text-center font-mono text-sm tracking-widest text-primary uppercase">
+      <div class="flex flex-col gap-3 items-center justify-center mb-20 space-y-4">
+        <p class="terminal-outline">
           // Core Modules
         </p>
         <h2 class="text-white">
@@ -163,10 +163,79 @@
         </div>
       </div>
     </section>
+
+    <%!-- GUI features --%>
+    <section class="border-t border-base-content/40 w-full bg-base-100 py-24 md:py-32 px-6">
+      <%!-- Section label --%>
+      <div class="flex flex-col gap-3 items-center justify-center mb-20 space-y-4">
+        <p class="terminal-outline warning">
+          // Plot Twist
+        </p>
+        <h2 class="text-white">
+          Okay fine, we built a GUI too.
+        </h2>
+        <p class="text-base-content/70 max-w-4xl text-center leading-relaxed">
+          We know, we know — real developers use the terminal. But your PM doesn't. Your sales lead definitely doesn't. So we made them a dashboard they can actually use, while you stay in the CLI where you belong.
+        </p>
+
+        <div class="mockup-browser border border-muted w-full max-w-7xl mx-auto">
+          <div class="mockup-browser-toolbar">
+            <div class="input">https://daisyui.com</div>
+          </div>
+          <div class="grid place-content-center h-80">TODO: Product Screenshot</div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <p class="text-muted text-xs text-center md:col-span-3">
+          /* Yes, it has colors. Yes, it has buttons. No, you don't have to use it. */
+        </p>
+
+        <%!-- Visual Dashboard --%>
+        <div>
+          <div class="flex flex-col items-center gap-3">
+            <.icon name="hero-window" class="size-6" />
+            <span class="font-mono text-sm font-bold tracking-widest text-white uppercase">
+              Visual Dashboard
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/70 leading-relaxed">
+            For the people on your team who think grep is a Pokémon.
+          </p>
+        </div>
+
+        <%!-- Drag & Drop --%>
+        <div>
+          <div class="flex flex-col items-center gap-3">
+            <.icon name="hero-cursor-arrow-rays" class="size-6 text-secondary" />
+            <span class="font-mono text-sm font-bold tracking-widest text-white uppercase">
+              Drag &amp; Drop
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/75 leading-relaxed">
+            Pipeline management your sales team won't need documentation for.
+          </p>
+        </div>
+
+        <%!-- Team Friendly --%>
+        <div>
+          <div class="flex flex-col items-center gap-3">
+            <.icon name="hero-users" class="size-6 text-accent" />
+            <span class="font-mono text-sm font-bold tracking-widest text-white uppercase">
+              Team Friendly
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/75 leading-relaxed">
+            Same data, same sync, zero terminal anxiety for your coworkers.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <%!-- Final CTA --%>
-    <section class="w-full bg-base-200 py-24 px-6 flex flex-col items-center text-center">
+    <section class="w-full border-y-2 border-base-content/10 bg-base-200 py-24 md:py-32 px-6 flex flex-col items-center text-center">
       <%!-- Label badge --%>
-      <div class="border border-primary/50 px-4 py-1.5 font-mono text-xs tracking-widest text-primary uppercase mb-10">
+      <div class="terminal-outline terminal-outline-warning">
         // Ready to Deploy?
       </div>
 
@@ -187,12 +256,6 @@
           class="btn btn-primary"
         >
           &gt;_ Create Account
-        </a>
-        <a
-          href={~p"/users/log-in"}
-          class="btn btn-ghost"
-        >
-          Log In
         </a>
       </div>
     </section>

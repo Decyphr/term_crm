@@ -17,6 +17,13 @@
   themes: false;
 }
 
+@theme inline {
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-muted: #2a5a2a;
+  --color-muted-foreground: #4a8a4a;
+}
+
 /* daisyUI theme plugin. You can update this file by fetching the latest version with:
   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
   We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
@@ -166,12 +173,12 @@ h2 {
   @apply text-6xl md:text-8xl font-black tracking-tight uppercase leading-none;
 }
 
-.text-grotesk {
-  font-family: "Space Grotesk", monospace;
+.terminal-outline {
+  @apply border-2 border-primary/40 px-4 py-1.5 font-mono text-xs tracking-widest text-primary uppercase mb-10;
 }
 
-.text-ibm {
-  font-family: "IBM Plex Mono", monospace;
+.terminal-outline.warning {
+  @apply border-warning text-warning;
 }
 
 /* CRT scan lines overlay */
