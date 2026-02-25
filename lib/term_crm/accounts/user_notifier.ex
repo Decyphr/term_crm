@@ -1,4 +1,8 @@
 defmodule TermCrm.Accounts.UserNotifier do
+  @moduledoc """
+  A module responsible for sending emails to users, such as confirmation instructions and magic link login instructions.
+  """
+
   import Swoosh.Email
 
   alias TermCrm.Mailer

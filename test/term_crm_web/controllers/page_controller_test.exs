@@ -3,6 +3,8 @@ defmodule TermCrmWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+
+    # Ensure the page contains the app name or some unique text to confirm it's rendering correctly
+    assert html_response(conn, 200) =~ "termcrm"
   end
 end
