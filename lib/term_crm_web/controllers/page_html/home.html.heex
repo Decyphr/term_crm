@@ -1,16 +1,236 @@
 <Layouts.marketing flash={@flash}>
-  <div class="">
-    <h1 class="text-4xl font-bold text-center mb-8">Welcome to Term CRM</h1>
-    <p class="text-lg text-center mb-8">
-      Term CRM is a powerful customer relationship management tool designed to help you manage your contacts, track interactions, and grow your business.
-    </p>
-    <div class="flex justify-center">
-      <a
-        href="/signup"
-        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
-      >
-        Get Started
-      </a>
+  <div class="relative">
+    <div id="crt-lines"></div>
+
+    <section class="relative min-h-screen bg-base-100 flex flex-col items-center overflow-hidden">
+      <%!-- Headline --%>
+      <div class="mt-12 text-center px-6 space-y-6">
+        <%!-- Top badge --%>
+        <div class="mt-10 flex justify-center">
+          <div class="flex items-center gap-2 border border-primary/40 px-4 py-1.5 text-xs font-mono text-primary tracking-widest uppercase">
+            <span class="inline-block w-2 h-2 bg-primary"></span>
+            v0.1.0 — Now Available for Early Access
+          </div>
+        </div>
+        <p class="jumbo-heading text-white">
+          Your Clients.
+        </p>
+        <p class="jumbo-heading text-white">
+          Your Pipeline.
+        </p>
+        <p class="jumbo-heading">
+          Your Terminal.
+        </p>
+        <h1 class="sr-only">text_crm</h1>
+      </div>
+
+      <%!-- Subheadline --%>
+      <p class="mt-10 text-center font-mono text-base-content/70 max-w-4xl px-6 leading-relaxed">
+        A CRM built for developers who live in the terminal. No bloat. No dashboards
+        you'll never use. Just raw, efficient client management — the way it should be.
+      </p>
+
+      <%!-- CTA buttons --%>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 px-6">
+        <a
+          href={~p"/users/register"}
+          class="btn btn-primary"
+        >
+          &gt;_ Start Free Trial
+        </a>
+        <a
+          href="#demo"
+          class="btn btn-ghost"
+        >
+          View Live Demo
+        </a>
+      </div>
+
+      <%!-- Terminal mockup --%>
+      <div id="demo" class="mt-16 w-full max-w-5xl px-6 pb-20">
+        <div class="border border-base-content/10 bg-base-300 shadow-2xl shadow-primary/5">
+          <%!-- Terminal titlebar --%>
+          <div class="flex items-center justify-between px-4 py-2 border-b border-base-content/10 bg-neutral">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-error/80"></span>
+              <span class="w-3 h-3 rounded-full bg-warning/80"></span>
+              <span class="w-3 h-3 rounded-full bg-success/80"></span>
+            </div>
+            <span class="font-mono text-xs text-base-content/40 tracking-widest">
+              termcrm — zsh — 80x24
+            </span>
+            <div class="w-12"></div>
+          </div>
+
+          <%!-- Terminal body --%>
+          <div class="p-6 font-mono text-sm leading-relaxed space-y-1">
+            <p>
+              <span class="text-primary">$</span>
+              <span class="text-primary ml-1">termcrm init --workspace acme-corp</span>
+            </p>
+            <p class="text-base-content/50 pl-4">
+              &gt; Workspace initialized. 3 pipelines loaded.
+            </p>
+
+            <p class="pt-2">
+              <span class="text-primary">$</span>
+              <span class="text-primary ml-1">termcrm clients --list --sort revenue</span>
+            </p>
+            <p class="text-base-content/50 pl-4">&gt; Fetching 247 clients... done (0.03s)</p>
+
+            <div class="pt-2 space-y-1">
+              <div class="flex gap-6 text-base-content/80">
+                <span class="w-32">ACME INC</span>
+                <span class="w-24">$240,000</span>
+                <span class="text-success">[ACTIVE]</span>
+              </div>
+              <div class="flex gap-6 text-base-content/80">
+                <span class="w-32">GLOBEX CORP</span>
+                <span class="w-24">$185,000</span>
+                <span class="text-success">[ACTIVE]</span>
+              </div>
+              <div class="flex gap-6 text-accent">
+                <span class="w-32">INITECH</span>
+                <span class="w-24">$120,000</span>
+                <span>[PENDING]</span>
+              </div>
+            </div>
+
+            <p class="pt-2">
+              <span class="text-primary">$</span>
+              <span class="text-primary ml-1">
+                termcrm task add "Deploy v2.0" --priority high
+              </span>
+            </p>
+            <p class="text-base-content/50 pl-4">
+              &gt; Task created. Assigned to pipeline: Brand Redesign
+            </p>
+
+            <p class="pt-2">
+              <span class="text-primary">$ </span>
+              <span class="text-primary/60 animate-pulse">_</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%!-- Stats bar --%>
+    <div class="w-full border-y-2 border-primary border-primary/20 bg-base-100">
+      <div class="mx-auto max-w-7xl px-6 py-4 flex flex-wrap items-center justify-center gap-0 font-mono text-xs tracking-widest text-base-content/60 uppercase">
+        <span class="px-8 py-1">2,400+ Developers</span>
+        <span class="text-primary/40 px-2">//</span>
+        <span class="px-8 py-1">99.9% Uptime</span>
+        <span class="text-primary/40 px-2">//</span>
+        <span class="px-8 py-1">&lt; 50ms Response</span>
+        <span class="text-primary/40 px-2">//</span>
+        <span class="px-8 py-1">Open Source Core</span>
+      </div>
     </div>
+
+    <%!-- Developer features --%>
+    <section class="w-full bg-base-100 py-24 px-6">
+      <%!-- Section label --%>
+      <div class="flex flex-col gap-3 items-center justify-center mb-6">
+        <p class="text-center font-mono text-sm tracking-widest text-primary uppercase">
+          // Core Modules
+        </p>
+        <h2 class="text-white">
+          Built for speed. Designed for hackers.
+        </h2>
+      </div>
+
+      <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6">
+        <%!-- Pipeline Manager --%>
+        <div class="bg-base-300 border border-base-content/10 p-8 flex flex-col gap-6 hover:border-primary/30 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="text-primary font-mono text-base font-bold">&gt;_</span>
+            <span class="font-mono text-sm font-bold tracking-widest text-primary uppercase">
+              Pipeline_Manager
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/70 leading-relaxed">
+            Track every deal from first contact to close.
+            Keyboard-driven navigation, bulk operations,
+            and custom pipeline stages — all from the
+            command line.
+          </p>
+          <p class="font-mono text-xs text-base-content/50 mt-auto">
+            $ termcrm pipeline --stage negotiate
+          </p>
+        </div>
+
+        <%!-- Client Registry --%>
+        <div class="bg-base-300 border border-base-content/10 p-8 flex flex-col gap-6 hover:border-primary/30 transition-colors">
+          <div class="flex items-center gap-3">
+            <.icon name="hero-user-group" class="size-5 text-secondary" />
+            <span class="font-mono text-sm font-bold tracking-widest text-secondary uppercase">
+              Client_Registry
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/75 leading-relaxed">
+            Manage contacts, companies, and relationships
+            with grep-like search. Tag, filter, and
+            segment your entire client base in
+            milliseconds.
+          </p>
+          <p class="font-mono text-xs text-base-content/50 mt-auto">
+            $ termcrm clients --tag enterprise --revenue &gt;100k
+          </p>
+        </div>
+
+        <%!-- Task Engine --%>
+        <div class="bg-base-300 border border-base-content/10 p-8 flex flex-col gap-6 hover:border-primary/30 transition-colors">
+          <div class="flex items-center gap-3">
+            <.icon name="hero-bolt" class="size-5 text-accent" />
+            <span class="font-mono text-sm font-bold tracking-widest text-accent uppercase">
+              Task_Engine
+            </span>
+          </div>
+          <p class="font-mono text-sm text-base-content/75 leading-relaxed">
+            Assign, prioritize, and track tasks across
+            projects. Cron-like scheduling, automated
+            reminders, and full Git-style history for
+            every status change.
+          </p>
+          <p class="font-mono text-xs text-base-content/50 mt-auto">
+            $ termcrm tasks --filter overdue --assign @me
+          </p>
+        </div>
+      </div>
+    </section>
+    <%!-- Final CTA --%>
+    <section class="w-full bg-base-200 py-24 px-6 flex flex-col items-center text-center">
+      <%!-- Label badge --%>
+      <div class="border border-primary/50 px-4 py-1.5 font-mono text-xs tracking-widest text-primary uppercase mb-10">
+        // Ready to Deploy?
+      </div>
+
+      <%!-- Headline --%>
+      <h2 class="font-bold text-4xl md:text-5xl text-base-content tracking-tight mb-6">
+        sudo apt-get install termcrm
+      </h2>
+
+      <%!-- Subtext --%>
+      <p class="font-mono text-sm text-base-content/40 mb-10">
+        Free for solo developers. No credit card required. Cancel anytime.
+      </p>
+
+      <%!-- Buttons --%>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={~p"/users/register"}
+          class="btn btn-primary"
+        >
+          &gt;_ Create Account
+        </a>
+        <a
+          href={~p"/users/log-in"}
+          class="btn btn-ghost"
+        >
+          Log In
+        </a>
+      </div>
+    </section>
   </div>
 </Layouts.marketing>

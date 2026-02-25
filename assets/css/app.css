@@ -146,3 +146,49 @@
 }
 
 /* This file is for your main application CSS */
+
+body {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", monospace;
+}
+
+h2 {
+  @apply tracking-tight leading-none text-4xl md:text-5xl font-medium;
+}
+
+.jumbo-heading {
+  font-family: "Space Grotesk", monospace;
+  @apply text-6xl md:text-8xl font-black tracking-tight uppercase leading-none;
+}
+
+.text-grotesk {
+  font-family: "Space Grotesk", monospace;
+}
+
+#crt-lines {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.3;
+  background: url("/images/crt-lines.jpg") 0% 0% / 7px;
+  animation: 300s linear 0s infinite normal none running moveDownAnimation;
+}
+
+@keyframes moveDownAnimation {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0% 100%;
+  }
+}
