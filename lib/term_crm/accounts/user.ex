@@ -1,4 +1,8 @@
 defmodule TermCrm.Accounts.User do
+  @moduledoc """
+  A user schema and changesets.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

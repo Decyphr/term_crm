@@ -1,4 +1,8 @@
 defmodule TermCrm.Accounts.UserToken do
+  @moduledoc """
+  A user token schema and functions for generating, hashing, and verifying tokens.
+  """
+
   use Ecto.Schema
   import Ecto.Query
   alias TermCrm.Accounts.UserToken

@@ -96,11 +96,11 @@ jobs:
         run: mix format --check-formatted
 
       # Step: Run Credo
-      - name: Run Credo (lint)
+      - name: Credo linting
         run: mix credo
 
       # Step: Security check with Sobelow
-      - name: Run Sobelow (security check)
+      - name: Sobelow security checks
         run: mix sobelow
 
       # Step: Execute the tests.

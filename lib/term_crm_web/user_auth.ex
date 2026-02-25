@@ -1,4 +1,9 @@
 defmodule TermCrmWeb.UserAuth do
+  @moduledoc """
+  This module is responsible for authenticating users and storing their
+  information in the session and cookies.
+  """
+
   use TermCrmWeb, :verified_routes
 
   import Plug.Conn
