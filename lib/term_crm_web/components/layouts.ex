@@ -72,8 +72,14 @@ defmodule TermCrmWeb.Layouts do
     """
   end
 
+  attr :flash, :map, required: true
+  attr :current_scope, :map, default: nil
+  slot :inner_block, required: true
+
   def auth(assigns) do
     ~H"""
+    <.marketing_header current_scope={@current_scope} />
+
     <main class="px-4 py-20 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl space-y-4">
         {render_slot(@inner_block)}
@@ -84,8 +90,13 @@ defmodule TermCrmWeb.Layouts do
     """
   end
 
+  attr :flash, :map, required: true
+  attr :current_scope, :map, default: nil
+  slot :inner_block, required: true
+
   def marketing(assigns) do
     ~H"""
+    <.marketing_header current_scope={@current_scope} />
     <main>
       {render_slot(@inner_block)}
     </main>
@@ -170,6 +181,76 @@ defmodule TermCrmWeb.Layouts do
       >
         <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
+    </div>
+    """
+  end
+
+  attr :current_scope, :map, default: nil
+
+  def marketing_header(assigns) do
+    ~H"""
+    <div class="navbar fixed top-0 left-0 right-0 bg-base-100 border-b border-b-primary/20 shadow-sm z-40 px-4 sm:px-6 lg:px-8">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabindex="-1"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+          >
+            <li><a>Features</a></li>
+            <li><a>Pricing</a></li>
+            <li><a>Docs</a></li>
+          </ul>
+        </div>
+        <.link href={~p"/"} class="btn font-semibold text-base tracking-[1px] uppercase">
+          $ termcrm<span class="animate-pulse">_</span>
+        </.link>
+        <div class="px-4 hidden lg:flex mr-auto">
+          <ul class="menu menu-horizontal px-1 text-xs text-base-content/70 uppercase">
+            <li><a>Features</a></li>
+            <li><a>Pricing</a></li>
+            <li><a>Docs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <ul class="menu menu-horizontal w-full relative flex items-center gap-4 justify-end">
+          <%= if @current_scope do %>
+            <li>
+              {@current_scope.user.email}
+            </li>
+            <li>
+              <.link href={~p"/users/settings"}>Settings</.link>
+            </li>
+            <li>
+              <.link href={~p"/users/log-out"} method="delete">Log out</.link>
+            </li>
+          <% else %>
+            <li>
+              <.link href={~p"/users/log-in"} class="btn btn-outline btn-primary">Log in</.link>
+            </li>
+            <li>
+              <.link href={~p"/users/register"} class="btn btn-primary">Register</.link>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
     """
   end

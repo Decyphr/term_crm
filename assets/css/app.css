@@ -170,13 +170,18 @@ h2 {
   font-family: "Space Grotesk", monospace;
 }
 
+.text-ibm {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* CRT scan lines overlay */
 #crt-lines {
   position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 10;
+  z-index: 999;
   mix-blend-mode: overlay;
   pointer-events: none;
   opacity: 0.3;

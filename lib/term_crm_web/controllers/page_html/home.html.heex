@@ -1,10 +1,10 @@
-<Layouts.marketing flash={@flash}>
+<Layouts.marketing flash={@flash} current_scope={@current_scope}>
   <div class="relative">
     <div id="crt-lines"></div>
 
     <section class="relative min-h-screen bg-base-100 flex flex-col items-center overflow-hidden">
       <%!-- Headline --%>
-      <div class="mt-12 text-center px-6 space-y-6">
+      <div class="mt-20 text-center px-6 space-y-6">
         <%!-- Top badge --%>
         <div class="mt-10 flex justify-center">
           <div class="flex items-center gap-2 border border-primary/40 px-4 py-1.5 text-xs font-mono text-primary tracking-widest uppercase">
@@ -26,8 +26,7 @@
 
       <%!-- Subheadline --%>
       <p class="mt-10 text-center font-mono text-base-content/70 max-w-4xl px-6 leading-relaxed">
-        A CRM built for developers who live in the terminal. No bloat. No dashboards
-        you'll never use. Just raw, efficient client management — the way it should be.
+        A CRM built for developers who live in the terminal. No bloat. No click-ops. Just raw, efficient client management — the way it should be.
       </p>
 
       <%!-- CTA buttons --%>
@@ -63,53 +62,18 @@
           </div>
 
           <%!-- Terminal body --%>
-          <div class="p-6 font-mono text-sm leading-relaxed space-y-1">
-            <p>
-              <span class="text-primary">$</span>
-              <span class="text-primary ml-1">termcrm init --workspace acme-corp</span>
-            </p>
-            <p class="text-base-content/50 pl-4">
-              &gt; Workspace initialized. 3 pipelines loaded.
-            </p>
-
-            <p class="pt-2">
-              <span class="text-primary">$</span>
-              <span class="text-primary ml-1">termcrm clients --list --sort revenue</span>
-            </p>
-            <p class="text-base-content/50 pl-4">&gt; Fetching 247 clients... done (0.03s)</p>
-
-            <div class="pt-2 space-y-1">
-              <div class="flex gap-6 text-base-content/80">
-                <span class="w-32">ACME INC</span>
-                <span class="w-24">$240,000</span>
-                <span class="text-success">[ACTIVE]</span>
-              </div>
-              <div class="flex gap-6 text-base-content/80">
-                <span class="w-32">GLOBEX CORP</span>
-                <span class="w-24">$185,000</span>
-                <span class="text-success">[ACTIVE]</span>
-              </div>
-              <div class="flex gap-6 text-accent">
-                <span class="w-32">INITECH</span>
-                <span class="w-24">$120,000</span>
-                <span>[PENDING]</span>
-              </div>
-            </div>
-
-            <p class="pt-2">
-              <span class="text-primary">$</span>
-              <span class="text-primary ml-1">
-                termcrm task add "Deploy v2.0" --priority high
-              </span>
-            </p>
-            <p class="text-base-content/50 pl-4">
-              &gt; Task created. Assigned to pipeline: Brand Redesign
-            </p>
-
-            <p class="pt-2">
-              <span class="text-primary">$ </span>
-              <span class="text-primary/60 animate-pulse">_</span>
-            </p>
+          <div class="p-6 w-full bg-base-300 text-white/85 font-mono text-sm leading-relaxed">
+            <pre data-prefix="$"><code>$ termcrm init --workspace acme-corp</code></pre>
+            <pre data-prefix=">" class="text-base-content/50"><code>&gt; Workspace initialized. 3 pipelines loaded.</code></pre>
+            <br />
+            <pre data-prefix="$"><code>$ termcrm clients --list --sort revenue</code></pre>
+            <pre data-prefix=">" class="text-base-content/50"><code>&gt; Fetching 247 clients... done (0.03s)</code></pre>
+            <pre data-prefix=">" class="text-primary"><code>ACME INC $240,000 [ACTIVE]</code></pre>
+            <pre data-prefix=">" class="text-primary"><code>GLOBEX CORP $185,000 [ACTIVE]</code></pre>
+            <pre data-prefix=">" class="text-warning"><code>INITECH $120,000 [PENDING]</code></pre>
+            <br />
+            <pre data-prefix="$"><code>$ termcrm task add "Deploy v2.0" --priority high</code></pre>
+            <pre data-prefix=">" class="text-base-content/50"><code>&gt; Task created. Assigned to phase: Brand Redesign</code></pre>
           </div>
         </div>
       </div>
