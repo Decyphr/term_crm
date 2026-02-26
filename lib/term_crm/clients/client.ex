@@ -1,4 +1,8 @@
 defmodule TermCrm.Clients.Client do
+  @moduledoc """
+  The Client schema represents a client in the CRM system.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
