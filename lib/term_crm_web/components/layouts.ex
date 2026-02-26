@@ -35,40 +35,93 @@ defmodule TermCrmWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
-      <div class="flex-1">
-        <a href="/" class="flex-1 flex w-fit items-center gap-2">
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">v{Application.spec(:phoenix, :vsn)}</span>
-        </a>
-      </div>
-      <div class="flex-none">
-        <ul class="flex flex-column px-1 space-x-4 items-center">
-          <li>
-            <a href="https://phoenixframework.org/" class="btn btn-ghost">Website</a>
-          </li>
-          <li>
-            <a href="https://github.com/phoenixframework/phoenix" class="btn btn-ghost">GitHub</a>
-          </li>
-          <li>
-            <.theme_toggle />
-          </li>
-          <li>
-            <a href="https://hexdocs.pm/phoenix/overview.html" class="btn btn-primary">
-              Get Started <span aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <div class="flex h-screen bg-black overflow-hidden">
+      <%!-- Sidebar --%>
+      <aside class="w-[230px] shrink-0 flex flex-col bg-black border-r border-green-900/40">
+        <%!-- Logo --%>
+        <div class="px-5 py-5 border-b border-green-900/40">
+          <.link href={~p"/clients"} class="flex items-center gap-2 group">
+            <.icon name="hero-command-line" class="size-5 text-green-400" />
+            <span class="text-green-400 font-bold text-sm tracking-[3px] uppercase group-hover:text-green-300 transition-colors">
+              TermCRM
+            </span>
+          </.link>
+        </div>
 
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
-        {render_slot(@inner_block)}
-      </div>
-    </main>
+        <%!-- Nav --%>
+        <nav class="flex-1 px-2 py-4 space-y-0.5 overflow-y-auto">
+          <.nav_item icon="hero-squares-2x2" label="Dashboard" href={~p"/clients"} />
+          <.nav_item icon="hero-user-group" label="Clients" href={~p"/clients"} active={true} />
+          <.nav_item icon="hero-tag" label="Contracts" href={~p"/clients"} />
+          <.nav_item icon="hero-folder" label="Projects" href={~p"/clients"} />
+          <.nav_item icon="hero-check-circle" label="Tasks" href={~p"/clients"} />
+          <.nav_item icon="hero-document-text" label="Invoices" href={~p"/clients"} />
+        </nav>
+
+        <%!-- User --%>
+        <%= if @current_scope do %>
+          <div class="dropdown dropdown-right dropdown-end flex items-center gap-3 rounded px-2 py-2 hover:bg-green-900/20 transition-colors group">
+            <div tabindex="0" role="button" class="btn bg-transparent border-none m-1">
+              <div class="size-8 rounded-full bg-yellow-500 flex items-center justify-center shrink-0">
+                <span class="text-black text-xs font-bold">
+                  {String.first(@current_scope.user.email) |> String.upcase()}
+                </span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-green-400 text-xs font-medium truncate group-hover:text-green-300 transition-colors">
+                  {@current_scope.user.email}
+                </span>
+                <span class="text-green-700 text-[10px] uppercase tracking-widest">Freelancer</span>
+              </div>
+            </div>
+            <ul
+              tabindex="-1"
+              class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            >
+              <li>
+                <.link
+                  href={~p"/users/settings"}
+                  class=""
+                >
+                  Account Settings
+                </.link>
+              </li>
+              <li><a>Item 2</a></li>
+            </ul>
+          </div>
+        <% end %>
+      </aside>
+
+      <%!-- Main content --%>
+      <main class="flex-1 overflow-y-auto bg-black">
+        <div class="p-6 max-w-7xl mx-auto">
+          {render_slot(@inner_block)}
+        </div>
+      </main>
+    </div>
 
     <.flash_group flash={@flash} />
+    """
+  end
+
+  attr :icon, :string, required: true
+  attr :label, :string, required: true
+  attr :href, :string, required: true
+  attr :active, :boolean, default: false
+
+  defp nav_item(assigns) do
+    ~H"""
+    <.link
+      href={@href}
+      class={[
+        "flex items-center gap-3 px-3 py-2 rounded text-xs font-medium tracking-widest uppercase transition-colors",
+        @active && "bg-green-900/30 text-yellow-400",
+        !@active && "text-green-600 hover:text-green-400 hover:bg-green-900/20"
+      ]}
+    >
+      <.icon name={@icon} class="size-4 shrink-0" />
+      {@label}
+    </.link>
     """
   end
 
@@ -234,13 +287,7 @@ defmodule TermCrmWeb.Layouts do
         <ul class="menu menu-horizontal w-full relative flex items-center gap-4 justify-end">
           <%= if @current_scope do %>
             <li>
-              {@current_scope.user.email}
-            </li>
-            <li>
-              <.link href={~p"/users/settings"}>Settings</.link>
-            </li>
-            <li>
-              <.link href={~p"/users/log-out"} method="delete">Log out</.link>
+              <.link href={~p"/clients"}>Dashboard</.link>
             </li>
           <% else %>
             <li>

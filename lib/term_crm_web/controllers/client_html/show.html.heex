@@ -1,0 +1,25 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Client {@client.id}
+    <:subtitle>This is a client record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/clients"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button variant="primary" navigate={~p"/clients/#{@client}/edit?return_to=show"}>
+        <.icon name="hero-pencil-square" /> Edit client
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Name">{@client.name}</:item>
+    <:item title="Status">{@client.status}</:item>
+    <:item title="Last activity">{@client.last_activity}</:item>
+    <:item title="Email">{@client.email}</:item>
+    <:item title="Phone number">{@client.phone_number}</:item>
+    <:item title="Address">{@client.address}</:item>
+    <:item title="Deleted at">{@client.deleted_at}</:item>
+    <:item title="Website">{@client.website}</:item>
+  </.list>
+</Layouts.app>

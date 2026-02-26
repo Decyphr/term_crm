@@ -1,0 +1,147 @@
+defmodule TermCrm.Clients do
+  @moduledoc """
+  The Clients context.
+  """
+
+  import Ecto.Query, warn: false
+  alias TermCrm.Repo
+
+  alias TermCrm.Clients.Client
+  alias TermCrm.Accounts.Scope
+
+  @doc """
+  Subscribes to scoped notifications about any client changes.
+
+  The broadcasted messages match the pattern:
+
+    * {:created, %Client{}}
+    * {:updated, %Client{}}
+    * {:deleted, %Client{}}
+
+  """
+  def subscribe_clients(%Scope{} = scope) do
+    key = scope.user.id
+
+    Phoenix.PubSub.subscribe(TermCrm.PubSub, "user:#{key}:clients")
+  end
+
+  defp broadcast_client(%Scope{} = scope, message) do
+    key = scope.user.id
+
+    Phoenix.PubSub.broadcast(TermCrm.PubSub, "user:#{key}:clients", message)
+  end
+
+  @doc """
+  Returns the list of clients.
+
+  ## Examples
+
+      iex> list_clients(scope)
+      [%Client{}, ...]
+
+  """
+  def list_clients(%Scope{} = scope) do
+    Repo.all_by(Client, user_id: scope.user.id)
+  end
+
+  @doc """
+  Gets a single client.
+
+  Raises `Ecto.NoResultsError` if the Client does not exist.
+
+  ## Examples
+
+      iex> get_client!(scope, 123)
+      %Client{}
+
+      iex> get_client!(scope, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_client!(%Scope{} = scope, id) do
+    Repo.get_by!(Client, id: id, user_id: scope.user.id)
+  end
+
+  @doc """
+  Creates a client.
+
+  ## Examples
+
+      iex> create_client(scope, %{field: value})
+      {:ok, %Client{}}
+
+      iex> create_client(scope, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_client(%Scope{} = scope, attrs) do
+    with {:ok, client = %Client{}} <-
+           %Client{}
+           |> Client.changeset(attrs, scope)
+           |> Repo.insert() do
+      broadcast_client(scope, {:created, client})
+      {:ok, client}
+    end
+  end
+
+  @doc """
+  Updates a client.
+
+  ## Examples
+
+      iex> update_client(scope, client, %{field: new_value})
+      {:ok, %Client{}}
+
+      iex> update_client(scope, client, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_client(%Scope{} = scope, %Client{} = client, attrs) do
+    true = client.user_id == scope.user.id
+
+    with {:ok, client = %Client{}} <-
+           client
+           |> Client.changeset(attrs, scope)
+           |> Repo.update() do
+      broadcast_client(scope, {:updated, client})
+      {:ok, client}
+    end
+  end
+
+  @doc """
+  Deletes a client.
+
+  ## Examples
+
+      iex> delete_client(scope, client)
+      {:ok, %Client{}}
+
+      iex> delete_client(scope, client)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_client(%Scope{} = scope, %Client{} = client) do
+    true = client.user_id == scope.user.id
+
+    with {:ok, client = %Client{}} <-
+           Repo.delete(client) do
+      broadcast_client(scope, {:deleted, client})
+      {:ok, client}
+    end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking client changes.
+
+  ## Examples
+
+      iex> change_client(scope, client)
+      %Ecto.Changeset{data: %Client{}}
+
+  """
+  def change_client(%Scope{} = scope, %Client{} = client, attrs \\ %{}) do
+    true = client.user_id == scope.user.id
+
+    Client.changeset(client, attrs, scope)
+  end
+end

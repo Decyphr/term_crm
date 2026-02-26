@@ -54,6 +54,8 @@ defmodule TermCrmWeb.Router do
   scope "/", TermCrmWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    resources "/clients", ClientController
+
     live_session :require_authenticated_user,
       on_mount: [{TermCrmWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit

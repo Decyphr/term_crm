@@ -1,0 +1,19 @@
+<.form :let={f} for={@changeset} action={@action}>
+  <.input field={f[:name]} type="text" label="Name" />
+  <.input
+    field={f[:status]}
+    type="select"
+    label="Status"
+    prompt="Choose a value"
+    options={Ecto.Enum.values(TermCrm.Clients.Client, :status)}
+  />
+  <.input field={f[:last_activity]} type="datetime-local" label="Last activity" />
+  <.input field={f[:email]} type="text" label="Email" />
+  <.input field={f[:phone_number]} type="text" label="Phone number" />
+  <.input field={f[:deleted_at]} type="datetime-local" label="Deleted at" />
+  <.input field={f[:website]} type="text" label="Website" />
+  <footer>
+    <.button variant="primary">Save Client</.button>
+    <.button :if={@return_to} href={@return_to}>Cancel</.button>
+  </footer>
+</.form>

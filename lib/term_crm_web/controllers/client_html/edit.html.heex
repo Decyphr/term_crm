@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Edit Client {@client.id}
+    <:subtitle>Use this form to manage client records in your database.</:subtitle>
+  </.header>
+
+  <.client_form changeset={@changeset} action={~p"/clients/#{@client}"} return_to={~p"/clients"} />
+</Layouts.app>

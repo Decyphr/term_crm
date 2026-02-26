@@ -1,0 +1,32 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Listing Clients
+    <:actions>
+      <.button href={~p"/clients/new"}>
+        <.icon name="hero-plus" /> New Client
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table id="clients" rows={@clients} row_click={&JS.navigate(~p"/clients/#{&1}")}>
+    <:col :let={client} label="Name">{client.name}</:col>
+    <:col :let={client} label="Status">{client.status}</:col>
+    <:col :let={client} label="Last activity">{client.last_activity}</:col>
+    <:col :let={client} label="Email">{client.email}</:col>
+    <:col :let={client} label="Phone number">{client.phone_number}</:col>
+    <:col :let={client} label="Address">{client.address}</:col>
+    <:col :let={client} label="Deleted at">{client.deleted_at}</:col>
+    <:col :let={client} label="Website">{client.website}</:col>
+    <:action :let={client}>
+      <div class="sr-only">
+        <.link navigate={~p"/clients/#{client}"}>Show</.link>
+      </div>
+      <.link navigate={~p"/clients/#{client}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={client}>
+      <.link href={~p"/clients/#{client}"} method="delete" data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</Layouts.app>
